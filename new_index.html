@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#174f42"><title>Penjaga Pulau Kebaikan — Game Edukasi</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@600;700;800;900&display=swap');
+:root{--green:#1d7056;--dark:#194c40;--mint:#e4f8e9;--cream:#fffaf0;--gold:#ffd66e;--coral:#ff9c91;--blue:#bce9f0;--purple:#d9ccff;--ink:#26463c}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#e4f7ed,#f7f6e9);font-family:Nunito,system-ui,sans-serif;color:var(--ink);min-height:100vh}button,input{font:inherit}button{border:0;border-radius:17px;padding:12px 17px;font-weight:1000;color:var(--ink);background:var(--gold);box-shadow:0 5px 0 #d6b34e;cursor:pointer;transition:.12s}button:active{transform:translateY(3px);box-shadow:0 2px 0 #d6b34e}button:disabled{opacity:.45;cursor:not-allowed}.primary{background:#8cdda5;box-shadow:0 5px 0 #4ba777}.secondary{background:#d8eff5;box-shadow:0 5px 0 #9bcbd6}.pink{background:#ffc9c0;box-shadow:0 5px 0 #d9948b}.purple{background:#e1d7ff;box-shadow:0 5px 0 #b5a5e4}
+.app{max-width:1050px;margin:auto;padding:13px 16px 30px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}.brand{font:800 25px 'Baloo 2';color:var(--green)}.stats{display:flex;gap:7px;flex-wrap:wrap}.pill{background:#fff;border:2px solid #e3eddf;border-radius:20px;padding:7px 12px;font-weight:1000;box-shadow:0 3px 0 #d9e7d7}
+.screen{display:none;animation:enter .25s ease}.screen.active{display:block}@keyframes enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.panel{background:#fffdf7;border:3px solid white;border-radius:27px;padding:clamp(15px,3vw,28px);box-shadow:0 9px 0 #315d4017,0 15px 28px #315d4010}h1,h2,h3{font-family:'Baloo 2';color:var(--green);margin:0 0 8px}h1{font-size:clamp(36px,6vw,58px);line-height:1.02}h2{font-size:clamp(26px,4vw,36px)}p{line-height:1.5}.muted{font-size:13px;color:#71867a}.center{text-align:center}.hero{background:linear-gradient(145deg,#fffdf4,#e2f8e9 60%,#e5f4f8);text-align:center;overflow:hidden}.hero-art{font-size:clamp(55px,10vw,90px);padding:15px;animation:bob 3s infinite}.hero-art span{display:inline-block;margin:0 6px}@keyframes bob{50%{transform:translateY(-7px)}}.arabic{color:#65936c;font-size:22px;font-weight:900}.modegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:620px;margin:18px auto}.mode{background:white;border:2px solid #e3efdf;border-radius:20px;padding:14px}.mode .emoji{font-size:42px}
+input{width:100%;padding:11px;border:2px solid #dcebd9;border-radius:12px;margin:5px 0 12px}.maphead,.battlehead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.progress{height:12px;background:#e8efe5;border-radius:20px;overflow:hidden;margin:12px 0}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#67c88e,#f2c75e);transition:.3s}
+.map{margin-top:12px;border:3px solid white;border-radius:22px;padding:15px;background:linear-gradient(#bde8f0 0 32%,#cceebd 32%);display:grid;grid-template-columns:repeat(5,1fr);gap:8px;position:relative}.island{background:#fffdf2;border:3px solid white;border-radius:20px;min-height:135px;padding:8px;box-shadow:0 5px 0 #a7c99e;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.island .ico{font-size:38px}.island b{font:800 15px 'Baloo 2';line-height:1.05}.island small{font-size:10px;color:#71867a}.island.done{background:#fff1c6;box-shadow:0 5px 0 #d5b45e}.island.lock{filter:grayscale(1);opacity:.5}
+.story{background:#f1f8e9;border:2px dashed #c5dfb9;padding:11px 14px;border-radius:17px;margin:10px 0}.battlefield{border-radius:23px;background:linear-gradient(180deg,#c5ebf0 0 48%,#bde5a9 48% 100%);border:3px solid white;padding:12px;position:relative;overflow:hidden}.battle-scene{min-height:205px;display:flex;justify-content:space-around;align-items:center;gap:10px}.fighter{text-align:center;flex:1}.fighter .avatar{font-size:clamp(54px,10vw,88px);filter:drop-shadow(0 5px 2px #315b3540)}.fighter .name{font-weight:1000;background:#ffffffd9;padding:5px 10px;border-radius:14px;display:inline-block}.fighter .hp{font-size:13px;font-weight:1000;margin-top:6px}.vs{font:900 28px 'Baloo 2';color:#fff;text-shadow:0 2px 3px #558}.enemy{animation:menace 2.3s ease-in-out infinite}@keyframes menace{50%{transform:translateY(-8px) rotate(3deg)}}.herochar{animation:bob 2.2s infinite}.healthbar{height:12px;background:#f3d9d4;border-radius:20px;overflow:hidden;width:min(180px,100%);margin:4px auto}.healthbar span{display:block;height:100%;background:#ec7770;width:100%;transition:.3s}.enemy .healthbar span{background:#8e74cb}
+.questionbox{margin-top:14px;background:#fffdf7;border:3px solid white;border-radius:22px;padding:16px;box-shadow:0 5px 0 #dce9d8}.qtop{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.tag{background:#e5f5e7;border-radius:12px;padding:6px 10px;font-weight:1000;color:#357451;font-size:12px}.qtext{text-align:center;font:800 clamp(19px,3vw,25px) 'Baloo 2';margin:10px auto 14px;max-width:760px;color:#244e40}.answers{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:760px;margin:auto}.answer{min-height:64px;background:#f2f8ef;box-shadow:0 4px 0 #c7ddc1;border:2px solid #e2efdf;font-size:16px}.answer.correct{background:#c9f1d1;box-shadow:0 4px 0 #83c293}.answer.wrong{background:#ffe0d9;box-shadow:0 4px 0 #d99a90}.feedback{min-height:33px;text-align:center;font-weight:1000;margin:9px 0 0;color:#327650}.feedback.bad{color:#bd6259}.actionrow{text-align:center;margin-top:9px}.next{display:none}
+.toast{background:#fff4cf;border-radius:16px;padding:10px;text-align:center;font-weight:900;margin:8px 0}
+.reward{text-align:center;background:linear-gradient(135deg,#fff2c8,#e3f8e9);border:3px solid white;border-radius:24px;padding:25px}.reward .big{font-size:78px}.footer{text-align:center;color:#799083;font-size:12px;margin-top:17px}
+
+/* Cinematic kemenangan: laser cahaya kebaikan, tanpa kontak fisik */
+.laser-overlay{position:fixed;inset:0;z-index:99;display:none;align-items:center;justify-content:center;padding:18px;background:radial-gradient(circle at center,#eaffc9ed 0,#b8f2d9f2 42%,#183f36f2 100%);overflow:hidden}
+.laser-overlay.show{display:flex;animation:overlayIn .25s ease}
+.laser-card{width:min(760px,100%);border:4px solid #fff;border-radius:28px;background:linear-gradient(145deg,#fffef1,#e5fff0);padding:20px 14px 24px;text-align:center;box-shadow:0 0 45px #baff9c;position:relative;overflow:hidden}
+.laser-title{font:900 clamp(27px,5vw,44px) 'Baloo 2';color:#21684e;margin:4px}
+.laser-stage{height:230px;position:relative;display:flex;align-items:center;justify-content:space-around;gap:8px;background:linear-gradient(#b9eaf0 0 53%,#bfe8a7 53%);border:3px solid white;border-radius:22px;overflow:hidden}
+.laser-hero,.laser-monster{font-size:clamp(55px,11vw,92px);position:relative;z-index:2;filter:drop-shadow(0 5px 3px #315b3555)}
+.laser-hero{animation:heroCharge .85s ease-in-out 1 both}
+.laser-monster{animation:monsterDefeat 1.25s ease-in 1.05s both}
+.laser-beam{position:absolute;left:24%;top:48%;height:18px;width:0;z-index:3;border-radius:100%;transform:rotate(-7deg);transform-origin:left center;background:linear-gradient(90deg,#fff,#fffbd0,#fff,#9bffdc);box-shadow:0 0 9px 5px #fff,0 0 24px 12px #7dffbe,0 0 46px 18px #e7ff78;animation:laserShoot .48s ease-out .72s forwards}
+.laser-burst{position:absolute;right:13%;top:27%;font-size:52px;opacity:0;z-index:4;animation:laserBurst .8s ease-out 1.08s forwards}
+.laser-spark{position:absolute;inset:0;pointer-events:none;font-size:28px;opacity:0;animation:sparkle .9s ease-out 1.3s forwards}
+.laser-caption{font-weight:1000;color:#327650;margin:13px 0 0;font-size:18px}
+@keyframes overlayIn{from{opacity:0}to{opacity:1}}
+@keyframes heroCharge{0%{transform:translateX(-12px) scale(1)}45%{transform:translateX(0) scale(1.14);filter:drop-shadow(0 0 15px #fff76a)}100%{transform:translateX(0) scale(1.05);filter:drop-shadow(0 0 22px #fff76a)}}
+@keyframes laserShoot{0%{width:0;opacity:.3}100%{width:66%;opacity:1}}
+@keyframes monsterDefeat{0%{transform:translateX(0) scale(1);opacity:1;filter:drop-shadow(0 0 0 #fff)}45%{transform:translateX(15px) scale(1.2);filter:brightness(2) drop-shadow(0 0 22px #fff)}100%{transform:translateX(45px) scale(.12) rotate(18deg);opacity:0;filter:brightness(3)}}
+@keyframes laserBurst{0%{opacity:0;transform:scale(.2)}35%{opacity:1;transform:scale(1.45)}100%{opacity:0;transform:scale(2.3)}}
+@keyframes sparkle{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+@media(max-width:600px){.laser-stage{height:185px}.laser-beam{left:25%}.laser-monster{max-width:30vw}}
+
+@media(max-width:700px){.app{padding:9px}.brand{font-size:20px}.map{grid-template-columns:repeat(2,1fr)}.island{min-height:110px}.battle-scene{min-height:160px}.answers{grid-template-columns:1fr}.modegrid{grid-template-columns:1fr}.panel{border-radius:22px}}
+</style></head>
+<body><div class="app">
+<header class="top"><div class="brand">🕌 Penjaga Pulau Kebaikan</div><div class="stats"><div class="pill">🪙 <span id="coins">0</span></div><div class="pill">⭐ <span id="stars">0</span></div><div class="pill">🏝️ <span id="progressStat">0/5</span></div></div></header>
+<section id="home" class="screen active panel hero">
+ <div class="hero-art"><span>🧒🏻</span><span>🛡️</span><span>🕌</span></div><div class="arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+ <h1>Penjaga Pulau<br>Kebaikan!</h1><p class="lead">Wahai Pahlawan Cilik! Lima monster nakal mengganggu Pulau Keluarga. Hadapi mereka, jawab tantangan dengan benar, dan kembalikan cahaya kebaikan!</p>
+ <div class="modegrid"><div class="mode"><div class="emoji">🧒🏻</div><h3>Main Sendiri</h3><p class="muted">Lawan monster dan kumpulkan bintang.</p><button class="primary" onclick="start('solo')">Mulai Petualangan</button></div><div class="mode"><div class="emoji">👫</div><h3>Main Bersama</h3><p class="muted">Bergiliran menjawab bersama teman.</p><button class="secondary" onclick="setupTeams()">Buat Kelompok</button></div></div>
+ <p class="muted">Setiap jawaban benar memberi serangan! Jawaban belum tepat? Pelajari petunjuk dan coba lagi.</p>
+</section>
+<section id="setup" class="screen panel"><h2>👫 Siapkan Kelompok</h2><p>Masukkan nama dua atau tiga kelompok. Setiap kelompok bergiliran menjawab.</p><div id="teamInputs"><label>Kelompok 1</label><input value="Tim Bintang"><label>Kelompok 2</label><input value="Tim Pelangi"></div><button class="purple" onclick="addTeam()">＋ Tambah Kelompok</button> <button class="primary" onclick="startTeam()">Mulai!</button> <button class="pink" onclick="screen('home')">Kembali</button></section>
+<section id="map" class="screen panel"><div class="maphead"><div><h2>🗺️ Peta Pulau Kebaikan</h2><p class="muted" id="mapMsg">Kalahkan penjaga untuk membuka pulau berikutnya.</p></div><button class="pink" onclick="screen('home')">Beranda</button></div><div class="progress"><span id="mapProgress"></span></div><div class="map" id="islands"></div><div class="toast" id="turnInfo"></div></section>
+<section id="battle" class="screen panel">
+ <div class="battlehead"><div><div class="tag" id="levelTag">LEVEL 1</div><h2 id="levelName">Taman Kasih Sayang</h2></div><button class="pink" onclick="toMap()">Peta</button></div>
+ <div class="story" id="story"></div>
+ <div class="battlefield"><div class="battle-scene">
+  <div class="fighter"><div class="avatar herochar">🧒🏻🛡️</div><div class="name" id="playerName">Pahlawan Cilik</div><div class="hp">❤️ <span id="playerHpText">3/3</span></div><div class="healthbar"><span id="playerHpBar"></span></div></div>
+  <div class="vs">VS</div>
+  <div class="fighter enemy"><div class="avatar" id="enemyAvatar">👾</div><div class="name" id="enemyName">Monster Egois</div><div class="hp">💜 <span id="enemyHpText">3/3</span></div><div class="healthbar"><span id="enemyHpBar"></span></div></div>
+ </div></div>
+ <div class="questionbox"><div class="qtop"><span class="tag" id="topicTag">KASIH SAYANG</span><span class="tag" id="questionCount">Tantangan 1 dari 3</span></div><div class="qtext" id="questionText"></div><div class="answers" id="answers"></div><div class="feedback" id="feedback" aria-live="polite"></div><div class="actionrow"><button class="primary next" id="nextBtn" onclick="nextQuestion()">Lanjutkan ⚔️</button><button class="primary next" id="retryBtn" onclick="retryBattle()">Coba Lagi 🔁</button></div></div>
+</section>
+<section id="victory" class="screen panel"><div class="reward"><div class="big" id="victoryIcon">🏆</div><h1 id="victoryTitle">Monster Kalah!</h1><p class="lead" id="victoryText"></p><h2>+10 Koin 🪙 &nbsp; +1 Bintang ⭐</h2><button class="primary" onclick="afterVictory()">Buka Pulau Berikutnya ➜</button></div></section>
+<section id="ending" class="screen panel"><div class="reward"><div class="big">🌈🕌🏆</div><h1>Pulau Kebaikan Kembali Bersinar!</h1><div class="arabic">الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ</div><p class="lead">Alhamdulillah! Semua monster berhasil dikalahkan dengan ilmu dan sikap baik. Ingat, kasih sayang membuat keluarga bahagia dan perbedaan harus dihargai.</p><h2 id="finalScore"></h2><div id="teamResult"></div><button class="primary" onclick="location.reload()">Main Lagi</button></div></section>
+<div id="laserOverlay" class="laser-overlay" aria-live="polite">
+ <div class="laser-card">
+  <div class="laser-title">✨ SERANGAN CAHAYA KEBAIKAN! ✨</div>
+  <div class="laser-stage">
+   <div class="laser-hero">🧒🏻🛡️</div>
+   <div class="laser-beam"></div>
+   <div class="laser-monster" id="laserMonster">👾</div>
+   <div class="laser-burst">💥✨</div>
+   <div class="laser-spark">✦　✨　✧　⭐　✦</div>
+  </div>
+  <div class="laser-caption" id="laserCaption">Pahlawan mengumpulkan energi cahaya...</div>
+ </div>
+</div>
+<footer class="footer">🌿 Pendidikan Pancasila • Ananda Level 1 • Belajar sambil bermain 🌿</footer></div>
+<script>
+const $=id=>document.getElementById(id);
+const levels=[
+ {name:"Taman Kasih Sayang",enemy:"Monster Cemberut",face:"👹",story:"Monster Cemberut membuat semua anggota keluarga lupa menunjukkan kasih sayang. Kalahkan dia dengan pengetahuan tentang kasih sayang ayah, ibu, kakak, dan adik.",topic:"Kasih Sayang",qs:[
+  ["Ayah dan ibu merawat kita saat sakit. Sikap itu menunjukkan ...",["Kasih sayang","Tidak peduli","Marah","Suka bertengkar"],0,"Merawat anak saat sakit adalah salah satu bentuk kasih sayang."],
+  ["Apa yang dapat kita lakukan untuk ayah dan bunda?",["Membentak mereka","Mendoakan mereka","Mengabaikan mereka","Menyembunyikan barang"],1,"Kita dapat mendoakan dan membantu ayah serta bunda."],
+  ["Adik kesulitan mengambil mainan. Apa yang sebaiknya kamu lakukan?",["Mengejek adik","Merebut mainan","Membantu adik","Membiarkan saja"],2,"Membantu adik adalah bentuk kasih sayang."]
+ ]},
+ {name:"Rumah Keluarga",enemy:"Monster Pemarah",face:"👿",story:"Monster Pemarah membuat kakak dan adik bertengkar. Jawab tantangan tentang bermain rukun, membantu, dan menerima nasihat orang tua.",topic:"Kasih Sayang",qs:[
+  ["Bermain bersama kakak atau adik sebaiknya dengan cara ...",["Rukun dan baik","Bertengkar","Saling mengejek","Berebut mainan"],0,"Bermain dengan baik membuat keluarga rukun."],
+  ["Ayah dan ibu menasihati kita ketika salah. Mereka ingin kita ...",["Marah kepada mereka","Tidak mau belajar","Menjadi lebih baik","Mengabaikan nasihat"],2,"Nasihat orang tua membantu kita belajar menjadi lebih baik."],
+  ["Kasih sayang membuat keluarga menjadi ...",["Suka bertengkar","Bahagia","Tidak peduli","Sedih"],1,"Kasih sayang membuat keluarga bahagia."]
+ ]},
+ {name:"Kampung Beragam",enemy:"Monster Pengejek",face:"👾",story:"Monster Pengejek menertawakan perbedaan fisik dan kesukaan warga. Tunjukkan bahwa setiap orang diciptakan Allah dengan rupa yang berbeda-beda.",topic:"Keberagaman",qs:[
+  ["Manakah contoh perbedaan fisik dalam keluarga?",["Hobi membaca dan memasak","Warna kulit dan bentuk rambut","Makanan kesukaan","Permainan favorit"],1,"Bentuk rambut, mata, warna kulit, dan ukuran badan dapat berbeda."],
+  ["Kakak suka warna biru, kamu suka merah. Sikap yang baik adalah ...",["Memaksa kakak suka merah","Mengejek kakak","Menghargai kesukaan kakak","Marah kepada kakak"],2,"Kita perlu menghargai kesukaan anggota keluarga."],
+  ["Allah menciptakan manusia dengan rupa yang ...",["Berbeda-beda","Harus sama","Tidak boleh berbeda","Selalu kembar"],0,"Allah menciptakan manusia dengan rupa yang berbeda-beda (QS. Al-Hasyr: 24)."]
+ ]},
+ {name:"Jembatan Tolong-Menolong",enemy:"Monster Acuh",face:"🧟",story:"Monster Acuh melarang warga saling membantu. Buktikan bahwa perbedaan bukan penghalang untuk hidup rukun.",topic:"Menghargai Perbedaan",qs:[
+  ["Tubuhmu lebih tinggi daripada adik. Adik ingin mengambil buku di rak tinggi. Kamu sebaiknya ...",["Menyembunyikan buku","Membantu mengambil buku","Mengejek adik","Pergi saja"],1,"Kita dapat menggunakan kemampuan untuk membantu anggota keluarga."],
+  ["Ayah suka berkebun, kamu tidak terlalu suka. Sikap yang tepat adalah ...",["Melarang ayah berkebun","Mengejek hobi ayah","Menghargai hobi ayah","Merusak tanaman"],2,"Kita tetap menghargai hobi ayah walaupun berbeda."],
+  ["Ibu suka memasak, kamu suka membaca. Apakah kamu tetap bisa membantu ibu?",["Ya, bisa membantu","Tidak boleh membantu","Harus marah","Tidak perlu peduli"],0,"Kita tetap dapat membantu keluarga walaupun hobinya berbeda."]
+ ]},
+ {name:"Istana Hati",enemy:"Raja Perusak Rukun",face:"🐲",story:"Raja Perusak Rukun adalah penjaga terakhir. Gunakan semua pelajaranmu tentang kasih sayang, keberagaman, dan saling menghargai untuk memulihkan pulau!",topic:"Misi Terakhir",qs:[
+  ["Kakak suka berkemah, kamu suka bermain di pantai. Saat berkemah bersama, kamu membantu mendirikan tenda. Sikapmu ...",["Tidak baik","Suka bertengkar","Baik dan menghargai","Tidak peduli"],2,"Walau hobi berbeda, kita tetap dapat saling membantu."],
+  ["Kakak suka membaca, kamu suka bermain bola. Ibu menemani kakak ke toko buku. Kamu sebaiknya ...",["Marah kepada ibu","Tidak marah dan menghargai","Merusak buku","Mengejek kakak"],1,"Kita tidak perlu marah karena kesukaan setiap orang berbeda."],
+  ["Kakak tidak suka kucing, tetapi tetap membantu adik merawat kucing saat adik sakit. Sikap kakak ...",["Menghargai dan membantu","Tidak peduli","Mengejek adik","Melarang adik"],0,"Kakak tetap membantu meskipun kesukaannya berbeda."]
+ ]}
+];
+let mode="solo",teams=[],scores=[],turn=0,coins=0,stars=0,unlocked=0,completed=[],level=0,qIndex=0,enemyHP=3,playerHP=3,lockedAnswer=false,wrongCount=0;
+function screen(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));$(id).classList.add("active");window.scrollTo({top:0,behavior:"smooth"});}
+function addTeam(){let ins=[...$("teamInputs").querySelectorAll("input")];if(ins.length>=3)return alert("Maksimal 3 kelompok ya!");let d=document.createElement("div");d.innerHTML=`<label>Kelompok ${ins.length+1}</label><input value="Tim ${ins.length+1}">`;$("teamInputs").appendChild(d);}
+function setupTeams(){screen("setup");}
+function start(m){mode=m;teams=[];scores=[];begin();}
+function startTeam(){teams=[...$("teamInputs").querySelectorAll("input")].map(x=>x.value.trim()||"Kelompok");if(teams.length<2)return;scores=teams.map(()=>0);mode="team";begin();}
+function begin(){coins=0;stars=0;unlocked=0;completed=[];turn=0;updateStats();renderMap();screen("map");}
+function updateStats(){$("coins").textContent=coins;$("stars").textContent=stars;$("progressStat").textContent=completed.length+"/5";$("mapProgress").style.width=(completed.length/5*100)+"%";}
+function renderMap(){let names=["🌷","🏡","🏘️","🌉","🏰"];$("islands").innerHTML=levels.map((l,i)=>`<button class="island ${completed.includes(i)?"done":i>unlocked?"lock":""}" ${i>unlocked?"disabled":""} onclick="enterLevel(${i})"><span class="ico">${completed.includes(i)?"⭐":names[i]}</span><b>${l.name}</b><small>${completed.includes(i)?"Monster dikalahkan":i>unlocked?"Terkunci":"Lawan: "+l.enemy}</small></button>`).join("");$("turnInfo").textContent=mode==="team"?`Giliran ${teams[turn]} • Bergiliran menjawab setiap tantangan.`:"Kalahkan monster untuk membuka pulau berikutnya.";$("mapMsg").textContent=completed.length===5?"Semua pulau sudah pulih!":"Selesaikan tantangan untuk membuka pulau selanjutnya.";updateStats();}
+function enterLevel(i){if(i>unlocked)return;level=i;qIndex=0;enemyHP=3;playerHP=3;wrongCount=0;startBattle();}
+function startBattle(){let l=levels[level];$("levelTag").textContent="LEVEL "+(level+1);$("levelName").textContent=l.name;$("story").textContent=l.story;$("enemyAvatar").textContent=l.face;$("enemyName").textContent=l.enemy;$("playerName").textContent=mode==="team"?teams[turn]:"Pahlawan Cilik";$("nextBtn").style.display="none";$("retryBtn").style.display="none";updateBattleBars();renderQuestion();screen("battle");}
+function updateBattleBars(){$("enemyHpText").textContent=enemyHP+"/3";$("enemyHpBar").style.width=(enemyHP/3*100)+"%";$("playerHpText").textContent=playerHP+"/3";$("playerHpBar").style.width=(playerHP/3*100)+"%";}
+function shuffle(a){let x=[...a];for(let i=x.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]];}return x;}
+function renderQuestion(){lockedAnswer=false;let l=levels[level],q=l.qs[qIndex];$("topicTag").textContent=l.topic;$("questionCount").textContent=`Tantangan ${qIndex+1} dari 3`;$("questionText").textContent=q[0];$("feedback").textContent="Pilih jawaban yang paling tepat untuk menyerang monster!";$("feedback").className="feedback";$("nextBtn").style.display="none";$("retryBtn").style.display="none";let opts=q[1].map((t,i)=>({t,correct:i===q[2]}));opts=shuffle(opts);$("answers").innerHTML=opts.map((o,i)=>`<button class="answer" onclick="answer(${i})">${["🅰️","🅱️","🅲","🅳"][i]} ${o.t}</button>`).join("");$("answers").dataset.correct=opts.findIndex(x=>x.correct);}
+function ping(freq=600){try{let c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.frequency.value=freq;o.connect(g);g.connect(c.destination);g.gain.value=.05;o.start();o.stop(c.currentTime+.13)}catch(e){}}
+function answer(i){if(lockedAnswer)return;lockedAnswer=true;let correct=Number($("answers").dataset.correct),btns=[...$("answers").querySelectorAll("button")],q=levels[level].qs[qIndex];if(i===correct){btns[i].classList.add("correct");enemyHP--;if(mode==="team")scores[turn]+=5;$("feedback").textContent="HEBAT! ⚔️ Serangan berhasil! "+q[3];$("feedback").className="feedback";ping(850);updateBattleBars();$("nextBtn").style.display="inline-block";$("nextBtn").textContent=enemyHP===0?"Kalahkan Monster! 🏆":"Serangan Berikutnya ➜";}else{btns[i].classList.add("wrong");btns[correct].classList.add("correct");playerHP--;wrongCount++;$("feedback").textContent="Belum tepat, pahlawan! ❤️ Monster menyerang. "+q[3]+" Coba lagi!";$("feedback").className="feedback bad";ping(180);updateBattleBars();$("retryBtn").style.display="inline-block";if(playerHP<=0){$("retryBtn").textContent="Ulangi Pertarungan 🔁";}else{$("retryBtn").textContent="Coba Soal Ini Lagi";}}}
+function retryBattle(){if(playerHP<=0){playerHP=3;enemyHP=3;qIndex=0;wrongCount=0;updateBattleBars();renderQuestion();$("feedback").textContent="Semangat! Kamu mendapat kesempatan baru. Baca petunjuknya baik-baik.";}else{renderQuestion();}}
+function nextQuestion(){if(enemyHP<=0){winLevel();return;}qIndex++;if(mode==="team")turn=(turn+1)%teams.length;$("playerName").textContent=mode==="team"?teams[turn]:"Pahlawan Cilik";renderQuestion();}
+function winLevel(){
+ if(!completed.includes(level)){completed.push(level);coins+=10;stars++;if(mode==="team")scores[turn]+=10;}
+ unlocked=Math.min(4,Math.max(unlocked,level+1));updateStats();
+ // Tampilkan animasi sinematik laser cahaya; tidak ada adegan pukulan atau kontak fisik.
+ $("laserMonster").textContent=levels[level].face;
+ $("laserCaption").textContent="Pahlawan mengumpulkan energi cahaya...";
+ const overlay=$("laserOverlay");overlay.classList.remove("show");void overlay.offsetWidth;overlay.classList.add("show");
+ ping(520);
+ setTimeout(()=>{$("laserCaption").textContent="Sinar kebaikan melesat! ✨";ping(980);},650);
+ setTimeout(()=>{$("laserCaption").textContent=levels[level].enemy+" lenyap dalam cahaya! Pulau kembali damai!";ping(1180);},1350);
+ setTimeout(()=>{
+  overlay.classList.remove("show");
+  $("victoryIcon").textContent=["🌷","🏡","🌈","🌉","🏰"][level];
+  $("victoryTitle").textContent="Monster Dikalahkan dengan Laser Kebaikan!";
+  $("victoryText").textContent=`Masya Allah! Pahlawan menggunakan sinar kebaikan untuk mengalahkan ${levels[level].enemy}. Tidak ada pukulan—hanya cahaya yang membuat monster lenyap dan memulihkan ${levels[level].name}.`;
+  screen("victory");
+ },2550);
+}
+function afterVictory(){if(completed.length===5){$("finalScore").textContent=`Hadiah: ${coins} koin dan ${stars} bintang!`;$("teamResult").innerHTML=mode==="team"?teams.map((t,i)=>`<p><b>${t}</b>: ${scores[i]} poin</p>`).join(""):"";screen("ending");}else{renderMap();screen("map");}}
+function toMap(){renderMap();screen("map");}
+</script></body></html>

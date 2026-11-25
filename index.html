@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#174f42"><title>Penjaga Pulau Kebaikan — Game Edukasi</title>
+<meta name="theme-color" content="#174f42"><title>Penjaga Pulau Kebaikan 3D — Game Edukasi</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@600;700;800;900&display=swap');
 :root{--green:#1d7056;--dark:#194c40;--mint:#e4f8e9;--cream:#fffaf0;--gold:#ffd66e;--coral:#ff9c91;--blue:#bce9f0;--purple:#d9ccff;--ink:#26463c}
@@ -37,23 +37,125 @@ input{width:100%;padding:11px;border:2px solid #dcebd9;border-radius:12px;margin
 @keyframes sparkle{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
 @media(max-width:600px){.laser-stage{height:185px}.laser-beam{left:25%}.laser-monster{max-width:30vw}}
 
+
+/* Upgrade visual 3D dan karakter muslim */
+body{background:radial-gradient(ellipse at 50% -15%,#f8fff0 0,#d9f1e7 42%,#c8e4dc 100%);}
+.app{perspective:1400px}
+.hero{background:linear-gradient(145deg,#fffef5 0%,#e5fff0 48%,#d9f0ff 100%);position:relative;isolation:isolate;box-shadow:0 14px 0 #174f4217,0 25px 55px #174f4222}
+.hero:before{content:"";position:absolute;inset:auto -8% -65px;height:190px;background:radial-gradient(ellipse,#79c99b55,transparent 68%);z-index:-1}
+.hero-art{display:flex;align-items:center;justify-content:center;gap:18px;min-height:160px;position:relative}
+.hero-art .mascot{width:125px;height:150px;filter:drop-shadow(0 14px 10px #174f4230);animation:float3d 3.2s ease-in-out infinite}
+.hero-art .mascot:nth-child(2){width:90px;height:110px;animation-delay:.35s}
+.hero-art .mosque3d{font-size:76px;filter:drop-shadow(0 12px 5px #174f4240);animation:float3d 3.5s ease-in-out infinite .6s}
+@keyframes float3d{0%,100%{transform:translateY(0) rotateY(-8deg)}50%{transform:translateY(-12px) rotateY(8deg)}}
+.character-select{max-width:650px;margin:18px auto 8px;padding:15px;border-radius:24px;background:#ffffffb8;border:1px solid #fff;box-shadow:0 8px 22px #285c4520}
+.character-select h3{margin-bottom:5px}.character-options{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.character-option{background:linear-gradient(145deg,#fff,#eaf8ef);border:3px solid #dcefe0;border-radius:20px;padding:10px 8px;box-shadow:0 7px 0 #c9dfce;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;gap:9px;min-height:110px}
+.character-option.selected{border-color:#45a878;box-shadow:0 7px 0 #329565,0 0 0 4px #a7e9bd70;transform:translateY(-3px)}
+.character-option svg{width:64px;height:86px;filter:drop-shadow(0 7px 4px #345a4533)}.character-option strong{display:block;font:900 17px 'Baloo 2';color:#245b45}.character-option small{display:block;font-size:11px;color:#71867a}
+.mode{box-shadow:0 8px 0 #dcebdd,0 14px 22px #174f4212;transform:translateY(0);transition:.2s}.mode:hover{transform:translateY(-4px)}
+.map{background:linear-gradient(180deg,#8ed5eb 0 34%,#bce8a4 34% 100%);box-shadow:inset 0 -12px 0 #8acb8a,0 12px 0 #9acb9d;transform:rotateX(2deg)}
+.island{position:relative;transform:translateZ(12px);box-shadow:0 8px 0 #8fb98b,0 13px 18px #315d4030;background:linear-gradient(145deg,#fffef5,#e9f7df)}
+.island:before{content:"";position:absolute;inset:5px 7px auto;height:8px;border-radius:50%;background:#ffffffaa;filter:blur(3px)}
+.battlefield{background:linear-gradient(180deg,#9bd9ee 0%,#c7eff0 45%,#8dd18f 46%,#64b77c 100%);box-shadow:inset 0 -13px 0 #4d9c6b,0 10px 0 #d3e6d1,0 17px 25px #174f4220;perspective:900px}
+.battlefield:before{content:"";position:absolute;left:-5%;right:-5%;bottom:23%;height:35px;background:#ffffff35;transform:rotateX(65deg);filter:blur(5px)}
+.battle-scene{min-height:255px;position:relative;z-index:1;transform-style:preserve-3d}
+.fighter{transform:translateZ(35px)}.fighter .avatar{height:145px;display:flex;align-items:center;justify-content:center}.fighter .avatar svg{height:142px;width:118px;filter:drop-shadow(0 13px 7px #143f3150);overflow:visible}
+.herochar svg{animation:float3d 2.4s ease-in-out infinite}.enemy .avatar{font-size:clamp(65px,11vw,100px);filter:drop-shadow(0 14px 5px #1d3b4c55)}
+.vs{z-index:2;text-shadow:0 4px 0 #4a7180,0 8px 10px #345}
+.fighter .name{box-shadow:0 4px 0 #d7e4d8,0 8px 12px #1b483322}
+.laser-hero{width:112px;height:145px;display:flex;align-items:center;justify-content:center}.laser-hero svg{width:110px;height:140px;filter:drop-shadow(0 10px 7px #315b3555)}
+.laser-stage{background:linear-gradient(#9bd9ee 0 53%,#8dd18f 53%);box-shadow:inset 0 -10px 0 #4d9c6b}
+@media(max-width:700px){.hero-art .mascot{width:92px;height:120px}.hero-art .mascot:nth-child(2){width:66px;height:90px}.character-option{flex-direction:column;gap:2px}.character-option svg{height:72px}.battle-scene{min-height:195px}.fighter .avatar{height:112px}.fighter .avatar svg{height:110px;width:90px}}
+
 @media(max-width:700px){.app{padding:9px}.brand{font-size:20px}.map{grid-template-columns:repeat(2,1fr)}.island{min-height:110px}.battle-scene{min-height:160px}.answers{grid-template-columns:1fr}.modegrid{grid-template-columns:1fr}.panel{border-radius:22px}}
+
+/* Peta eksplorasi bergaya game adventure dengan penanda karakter */
+.map-screen{overflow:hidden}
+.world-map{position:relative;width:100%;aspect-ratio:1000/620;min-height:390px;max-height:680px;border:5px solid #fff;border-radius:25px;overflow:hidden;background:#a8dc8b;box-shadow:0 10px 0 #80b77b,0 18px 28px #254d3530;isolation:isolate}
+.world-art{position:absolute;inset:0;width:100%;height:100%;display:block}
+.map-label{position:absolute;z-index:2;padding:5px 10px;border-radius:14px;background:#fff9d9d9;border:2px solid #fff;box-shadow:0 3px 0 #b9a76b;color:#5b7144;font-size:clamp(8px,1.4vw,13px);font-weight:1000;letter-spacing:.5px;pointer-events:none}
+.map-label-a{left:3%;top:8%}.map-label-b{right:4%;bottom:8%}
+.map-nodes{position:absolute;inset:0;z-index:4}
+.map-node{position:absolute;transform:translate(-50%,-50%);width:clamp(92px,14%,150px);min-height:72px;padding:7px 5px 8px;border:3px solid #fff;border-radius:19px;background:linear-gradient(145deg,#fffef3,#e4f7d8);box-shadow:0 7px 0 #76a866,0 12px 18px #254d3538;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;text-align:center;color:#315c3c;cursor:pointer;transition:transform .18s,filter .18s;z-index:4}
+.map-node:active{transform:translate(-50%,-45%) scale(.97)}.map-node .node-icon{font-size:clamp(23px,4vw,39px);line-height:1.05;filter:drop-shadow(0 3px 2px #3454)}
+.map-node strong{font:900 clamp(9px,1.25vw,14px) 'Baloo 2';line-height:1.05}.map-node small{font-size:clamp(7px,.95vw,10px);font-weight:900;color:#66816a}
+.map-node.done{background:linear-gradient(145deg,#fff5c5,#ffe28b);box-shadow:0 7px 0 #c79e42,0 12px 18px #654b2438}
+.map-node.locked{filter:grayscale(.8);opacity:.78;background:linear-gradient(145deg,#e5e7dd,#c5d0bf);box-shadow:0 7px 0 #91a18c,0 12px 18px #254d3520}
+.map-node.current{border-color:#ffe36c;box-shadow:0 0 0 5px #ffe36c77,0 8px 0 #76a866,0 0 25px #fff59c;animation:nodePulse 1.3s infinite}
+@keyframes nodePulse{50%{filter:brightness(1.12);box-shadow:0 0 0 9px #ffe36c33,0 8px 0 #76a866,0 0 28px #fff59c}}
+.player-marker{position:absolute;z-index:8;width:70px;display:flex;flex-direction:column;align-items:center;transform:translate(-50%,-115%);pointer-events:none;transition:left .45s ease,top .45s ease;filter:drop-shadow(0 5px 4px #193d3370)}
+.marker-arrow{font-size:27px;line-height:17px;color:#ffcf3d;text-shadow:0 2px 0 #9c6722,0 0 8px #fff;animation:arrowBounce .7s infinite alternate}
+@keyframes arrowBounce{to{transform:translateY(-8px)}}
+.marker-avatar{width:54px;height:62px;background:#ffffffdf;border:3px solid #fff;border-radius:18px 18px 16px 16px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 4px 0 #76a866}
+.marker-avatar svg{width:48px;height:59px;filter:drop-shadow(0 2px 2px #3455)}
+.player-marker b{margin-top:3px;padding:2px 9px;border-radius:10px;background:#174f42;color:#fff;font-size:10px;white-space:nowrap;border:2px solid #fff}
+.map-legend{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;padding:12px 4px 2px;color:#55735b;font-size:11px;font-weight:900}
+.map-legend span{background:#f1f8e9;border:1px solid #d6e8cf;padding:5px 9px;border-radius:20px}
+@media(max-width:600px){.world-map{min-height:340px;aspect-ratio: .95/1;border-radius:18px}.map-node{width:29%;min-height:65px;padding:5px 3px;border-radius:14px}.map-node strong{font-size:9px}.map-node small{font-size:7px}.map-node .node-icon{font-size:25px}.player-marker{width:57px}.marker-avatar{width:43px;height:50px}.marker-avatar svg{width:39px;height:48px}.marker-arrow{font-size:22px}.map-label{font-size:7px}.map-label-a{top:3%}.map-label-b{bottom:3%}}
+
 </style></head>
 <body><div class="app">
-<header class="top"><div class="brand">🕌 Penjaga Pulau Kebaikan</div><div class="stats"><div class="pill">🪙 <span id="coins">0</span></div><div class="pill">⭐ <span id="stars">0</span></div><div class="pill">🏝️ <span id="progressStat">0/5</span></div></div></header>
+<header class="top"><div class="brand">🕌 Penjaga Pulau Kebaikan <span style="font-size:12px;background:#1d7056;color:white;border-radius:9px;padding:3px 7px;vertical-align:middle">3D</span></div><div class="stats"><div class="pill">🪙 <span id="coins">0</span></div><div class="pill">⭐ <span id="stars">0</span></div><div class="pill">🏝️ <span id="progressStat">0/5</span></div></div></header>
 <section id="home" class="screen active panel hero">
- <div class="hero-art"><span>🧒🏻</span><span>🛡️</span><span>🕌</span></div><div class="arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+ <div class="hero-art"><span class="mascot" id="homeMascotA"></span><span style="font-size:60px;filter:drop-shadow(0 8px 4px #3456);">🛡️</span><span class="mascot" id="homeMascotB"></span><span class="mosque3d">🕌</span></div><div class="arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
  <h1>Penjaga Pulau<br>Kebaikan!</h1><p class="lead">Wahai Pahlawan Cilik! Lima monster nakal mengganggu Pulau Keluarga. Hadapi mereka, jawab tantangan dengan benar, dan kembalikan cahaya kebaikan!</p>
+ <div class="character-select"><h3>✨ Pilih Pahlawan Muslimmu</h3><p class="muted">Pilih karakter yang akan menemanimu menjelajahi Pulau Kebaikan.</p><div class="character-options"><button type="button" class="character-option selected" id="chooseBoy" onclick="selectHero('boy')"><span id="boyPreview"></span><span><strong>Ahmad</strong><small>Anak laki-laki</small></span></button><button type="button" class="character-option" id="chooseGirl" onclick="selectHero('girl')"><span id="girlPreview"></span><span><strong>Aisyah</strong><small>Anak perempuan</small></span></button></div></div>
  <div class="modegrid"><div class="mode"><div class="emoji">🧒🏻</div><h3>Main Sendiri</h3><p class="muted">Lawan monster dan kumpulkan bintang.</p><button class="primary" onclick="start('solo')">Mulai Petualangan</button></div><div class="mode"><div class="emoji">👫</div><h3>Main Bersama</h3><p class="muted">Bergiliran menjawab bersama teman.</p><button class="secondary" onclick="setupTeams()">Buat Kelompok</button></div></div>
  <p class="muted">Setiap jawaban benar memberi serangan! Jawaban belum tepat? Pelajari petunjuk dan coba lagi.</p>
 </section>
 <section id="setup" class="screen panel"><h2>👫 Siapkan Kelompok</h2><p>Masukkan nama dua atau tiga kelompok. Setiap kelompok bergiliran menjawab.</p><div id="teamInputs"><label>Kelompok 1</label><input value="Tim Bintang"><label>Kelompok 2</label><input value="Tim Pelangi"></div><button class="purple" onclick="addTeam()">＋ Tambah Kelompok</button> <button class="primary" onclick="startTeam()">Mulai!</button> <button class="pink" onclick="screen('home')">Kembali</button></section>
-<section id="map" class="screen panel"><div class="maphead"><div><h2>🗺️ Peta Pulau Kebaikan</h2><p class="muted" id="mapMsg">Kalahkan penjaga untuk membuka pulau berikutnya.</p></div><button class="pink" onclick="screen('home')">Beranda</button></div><div class="progress"><span id="mapProgress"></span></div><div class="map" id="islands"></div><div class="toast" id="turnInfo"></div></section>
+<section id="map" class="screen panel map-screen">
+ <div class="maphead"><div><h2>🗺️ Peta Petualangan Pulau Kebaikan</h2><p class="muted" id="mapMsg">Ikuti jalur, temukan lokasi misi, dan pulihkan pulau!</p></div><button class="pink" onclick="screen('home')">Beranda</button></div>
+ <div class="progress"><span id="mapProgress"></span></div>
+ <div class="world-map" id="worldMap">
+  <svg class="world-art" viewBox="0 0 1000 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+   <defs>
+    <linearGradient id="grassland" x2="0" y2="1"><stop stop-color="#c8ed9e"/><stop offset="1" stop-color="#83c96e"/></linearGradient>
+    <linearGradient id="water" x2="0" y2="1"><stop stop-color="#65d6e5"/><stop offset="1" stop-color="#159bb9"/></linearGradient>
+    <linearGradient id="sand" x2="0" y2="1"><stop stop-color="#f5d995"/><stop offset="1" stop-color="#d8ad68"/></linearGradient>
+    <filter id="mapShadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="7" stdDeviation="5" flood-color="#315d37" flood-opacity=".28"/></filter>
+   </defs>
+   <rect width="1000" height="620" fill="url(#grassland)"/>
+   <path d="M0 0H1000V90Q860 120 780 72T600 92T390 65T180 112T0 80Z" fill="#a7dc83" opacity=".8"/>
+   <path d="M0 500Q170 440 270 510T490 505T720 455T1000 500V620H0Z" fill="url(#sand)"/>
+   <path d="M-40 430C120 330 130 520 280 435S430 300 560 365S770 490 880 340S1010 250 1060 205" fill="none" stroke="#b7a06a" stroke-width="78" stroke-linecap="round"/>
+   <path d="M-40 430C120 330 130 520 280 435S430 300 560 365S770 490 880 340S1010 250 1060 205" fill="none" stroke="#f3d89b" stroke-width="62" stroke-linecap="round"/>
+   <path d="M-30 170C110 210 110 310 245 290S420 165 535 220S710 340 825 250S945 115 1040 150" fill="none" stroke="url(#water)" stroke-width="48" stroke-linecap="round"/>
+   <path d="M-30 170C110 210 110 310 245 290S420 165 535 220S710 340 825 250S945 115 1040 150" fill="none" stroke="#b9f5ef" stroke-width="5" stroke-dasharray="18 25" opacity=".65"/>
+   <g fill="#5eaa55" opacity=".95">
+    <path d="M70 70q-24-35 0-50q28 8 17 37q26-28 39-5q-2 28-37 31q26 15 9 33q-28 0-31-29q-22 18-35-2q7-24 38-15Z"/><path d="M900 65q-24-35 0-50q28 8 17 37q26-28 39-5q-2 28-37 31q26 15 9 33q-28 0-31-29q-22 18-35-2q7-24 38-15Z"/><path d="M790 530q-24-35 0-50q28 8 17 37q26-28 39-5q-2 28-37 31q26 15 9 33q-28 0-31-29q-22 18-35-2q7-24 38-15Z"/><path d="M160 560q-24-35 0-50q28 8 17 37q26-28 39-5q-2 28-37 31q26 15 9 33q-28 0-31-29q-22 18-35-2q7-24 38-15Z"/>
+   </g>
+   <g filter="url(#mapShadow)">
+    <g transform="translate(110 105)"><rect x="0" y="20" width="75" height="48" rx="7" fill="#f5d8a0" stroke="#a87945" stroke-width="4"/><path d="M-7 24L37 -5L82 24Z" fill="#d77d5b" stroke="#9c5943" stroke-width="4"/><rect x="30" y="42" width="16" height="26" fill="#8d6549"/><rect x="10" y="35" width="14" height="13" fill="#8ed5e4"/></g>
+    <g transform="translate(765 90)"><rect x="0" y="25" width="80" height="50" rx="6" fill="#f3d9a4" stroke="#a87945" stroke-width="4"/><path d="M-8 28L40 -5L88 28Z" fill="#b76d56" stroke="#92513e" stroke-width="4"/><rect x="33" y="49" width="17" height="26" fill="#8d6549"/></g>
+    <g transform="translate(445 55)"><rect x="0" y="38" width="100" height="72" rx="8" fill="#f7e2b5" stroke="#a87945" stroke-width="4"/><path d="M-10 43L50 0L110 43Z" fill="#367f70" stroke="#245f52" stroke-width="4"/><path d="M43 0q7-27 14 0" stroke="#d5b55e" stroke-width="6" fill="none"/><rect x="42" y="74" width="18" height="36" fill="#8b6549"/><rect x="12" y="55" width="18" height="18" fill="#8bd4e6"/><rect x="72" y="55" width="18" height="18" fill="#8bd4e6"/></g>
+    <g transform="translate(300 410)"><rect x="0" y="20" width="70" height="45" rx="7" fill="#f6dda9" stroke="#9c754a" stroke-width="4"/><path d="M-7 23L35 -8L78 23Z" fill="#d88764" stroke="#9c5943" stroke-width="4"/><rect x="28" y="40" width="15" height="25" fill="#805b43"/></g>
+    <g transform="translate(820 380)"><rect x="0" y="20" width="76" height="48" rx="7" fill="#f7dfac" stroke="#a87945" stroke-width="4"/><path d="M-7 23L38 -9L83 23Z" fill="#c77c5c" stroke="#92513e" stroke-width="4"/><rect x="31" y="43" width="15" height="25" fill="#8d6549"/></g>
+   </g>
+   <g fill="#397d45" stroke="#28633b" stroke-width="3">
+    <g transform="translate(225 90)"><rect x="-5" y="25" width="10" height="38" fill="#926746" stroke="none"/><circle r="27" cy="8"/><circle cx="-18" cy="20" r="17" fill="#4e9c4d"/><circle cx="17" cy="20" r="17" fill="#62ad51"/></g>
+    <g transform="translate(680 120)"><rect x="-5" y="25" width="10" height="38" fill="#926746" stroke="none"/><circle r="27" cy="8"/><circle cx="-18" cy="20" r="17" fill="#4e9c4d"/><circle cx="17" cy="20" r="17" fill="#62ad51"/></g>
+    <g transform="translate(610 490)"><rect x="-5" y="25" width="10" height="38" fill="#926746" stroke="none"/><circle r="27" cy="8"/><circle cx="-18" cy="20" r="17" fill="#4e9c4d"/><circle cx="17" cy="20" r="17" fill="#62ad51"/></g>
+    <g transform="translate(90 340)"><rect x="-5" y="25" width="10" height="38" fill="#926746" stroke="none"/><circle r="27" cy="8"/><circle cx="-18" cy="20" r="17" fill="#4e9c4d"/><circle cx="17" cy="20" r="17" fill="#62ad51"/></g>
+    <g transform="translate(930 250)"><rect x="-5" y="25" width="10" height="38" fill="#926746" stroke="none"/><circle r="27" cy="8"/><circle cx="-18" cy="20" r="17" fill="#4e9c4d"/><circle cx="17" cy="20" r="17" fill="#62ad51"/></g>
+   </g>
+   <g filter="url(#mapShadow)"><path d="M480 193l35-22 35 22v23h-70z" fill="#c75d55"/><path d="M475 194h80v9h-80z" fill="#8e4e42"/><path d="M485 181l30-20 30 20" fill="none" stroke="#f8d68b" stroke-width="5"/></g>
+   <g fill="#fff" opacity=".55"><circle cx="80" cy="255" r="7"/><circle cx="100" cy="275" r="4"/><circle cx="910" cy="170" r="6"/><circle cx="860" cy="190" r="4"/></g>
+   <g font-family="sans-serif" font-size="25" opacity=".9"><text x="80" y="45">☁️</text><text x="870" y="450">🌼</text><text x="160" y="475">🌷</text><text x="700" y="560">🌻</text></g>
+  </svg>
+  <div class="map-label map-label-a">🌴 DESA DAMAI</div><div class="map-label map-label-b">🕌 KAMPUNG KELUARGA</div>
+  <div id="islands" class="map-nodes"></div>
+  <div id="playerMarker" class="player-marker"><div class="marker-arrow">▼</div><div class="marker-avatar"></div><b id="markerName">Ahmad</b></div>
+ </div>
+ <div class="map-legend"><span>⭐ Selesai</span><span>✨ Misi tersedia</span><span>🔒 Belum terbuka</span><span>📍 Posisi pahlawan</span></div>
+ <div class="toast" id="turnInfo"></div>
+</section>
 <section id="battle" class="screen panel">
  <div class="battlehead"><div><div class="tag" id="levelTag">LEVEL 1</div><h2 id="levelName">Taman Kasih Sayang</h2></div><button class="pink" onclick="toMap()">Peta</button></div>
  <div class="story" id="story"></div>
  <div class="battlefield"><div class="battle-scene">
-  <div class="fighter"><div class="avatar herochar">🧒🏻🛡️</div><div class="name" id="playerName">Pahlawan Cilik</div><div class="hp">❤️ <span id="playerHpText">3/3</span></div><div class="healthbar"><span id="playerHpBar"></span></div></div>
+  <div class="fighter"><div class="avatar herochar" id="battleHero"></div><div class="name" id="playerName">Pahlawan Cilik</div><div class="hp">❤️ <span id="playerHpText">3/3</span></div><div class="healthbar"><span id="playerHpBar"></span></div></div>
   <div class="vs">VS</div>
   <div class="fighter enemy"><div class="avatar" id="enemyAvatar">👾</div><div class="name" id="enemyName">Monster Egois</div><div class="hp">💜 <span id="enemyHpText">3/3</span></div><div class="healthbar"><span id="enemyHpBar"></span></div></div>
  </div></div>
@@ -65,7 +167,7 @@ input{width:100%;padding:11px;border:2px solid #dcebd9;border-radius:12px;margin
  <div class="laser-card">
   <div class="laser-title">✨ SERANGAN CAHAYA KEBAIKAN! ✨</div>
   <div class="laser-stage">
-   <div class="laser-hero">🧒🏻🛡️</div>
+   <div class="laser-hero" id="laserHero"></div>
    <div class="laser-beam"></div>
    <div class="laser-monster" id="laserMonster">👾</div>
    <div class="laser-burst">💥✨</div>
@@ -77,6 +179,24 @@ input{width:100%;padding:11px;border:2px solid #dcebd9;border-radius:12px;margin
 <footer class="footer">🌿 Pendidikan Pancasila • Ananda Level 1 • Belajar sambil bermain 🌿</footer></div>
 <script>
 const $=id=>document.getElementById(id);
+
+let selectedHero='boy';
+function heroSVG(gender='boy'){
+ const girl=gender==='girl';
+ const id=girl?'girl':'boy';
+ const garment=girl?'#8c68c8':'#287b68',light=girl?'#c8aaf2':'#79c7a5',skin='#c98559';
+ return `<svg viewBox="0 0 150 190" role="img" aria-label="Karakter anak muslim ${girl?'perempuan':'laki-laki'}" xmlns="http://www.w3.org/2000/svg">
+ <defs><linearGradient id="${id}cloth" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${light}"/><stop offset=".55" stop-color="${garment}"/><stop offset="1" stop-color="#174b42"/></linearGradient><linearGradient id="${id}skin" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f0bd91"/><stop offset="1" stop-color="${skin}"/></linearGradient><linearGradient id="${id}shade" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff" stop-opacity=".5"/><stop offset="1" stop-color="#173d34" stop-opacity=".22"/></linearGradient></defs>
+ <ellipse cx="76" cy="179" rx="39" ry="7" fill="#174f42" opacity=".2"/>
+ <path d="M49 128 Q45 150 43 171 Q58 178 72 171 L75 139Z" fill="#294b5d"/><path d="M78 139 L82 171 Q98 178 111 170 L101 126Z" fill="#294b5d"/><path d="M39 168 Q56 164 72 171 L73 180 Q55 186 37 179Z" fill="#253b48"/><path d="M81 171 Q97 164 112 168 L116 179 Q99 186 82 180Z" fill="#253b48"/>
+ <path d="M42 79 Q75 65 108 80 L116 144 Q77 160 34 144Z" fill="url(#${id}cloth)" stroke="#174f42" stroke-width="2"/><path d="M53 87 L75 105 L97 87 L91 148 L59 148Z" fill="url(#${id}shade)"/><path d="M73 104 L77 104 L79 147 L72 147Z" fill="#f8e7b6"/><path d="M66 113 L84 113" stroke="#f8e7b6" stroke-width="3" stroke-linecap="round"/>
+ <path d="M39 89 Q25 100 28 126 L39 131 L51 103Z" fill="url(#${id}cloth)" stroke="#174f42" stroke-width="2"/><path d="M107 89 Q122 100 119 126 L108 131 L97 103Z" fill="url(#${id}cloth)" stroke="#174f42" stroke-width="2"/><circle cx="33" cy="128" r="7" fill="url(#${id}skin)"/><circle cx="114" cy="128" r="7" fill="url(#${id}skin)"/>
+ ${girl?`<path d="M47 51 Q43 16 77 15 Q113 17 108 57 L120 116 Q104 133 76 131 Q47 132 30 116Z" fill="#f1e9ff" stroke="#8061b2" stroke-width="2"/><path d="M47 55 Q42 25 76 22 Q107 23 107 56 L96 76 Q77 88 58 75Z" fill="#a98ad9"/><path d="M45 57 Q51 76 75 82 Q100 76 109 56 L116 112 Q100 127 76 127 Q52 127 35 112Z" fill="url(#${id}cloth)" stroke="#7655a8" stroke-width="2"/><path d="M48 65 Q76 91 106 65" fill="none" stroke="#eadfff" stroke-width="4"/>`:`<path d="M48 53 Q47 21 77 20 Q107 21 106 53 L100 68 L53 68Z" fill="#f4f0df" stroke="#b7a989" stroke-width="2"/><path d="M48 44 Q77 10 106 44 L104 53 L50 53Z" fill="#245344"/><path d="M52 55 Q76 63 101 55 L99 70 Q77 81 54 70Z" fill="#f4f0df"/>`}
+ <ellipse cx="77" cy="61" rx="25" ry="27" fill="url(#${id}skin)" stroke="#9b6246" stroke-width="1.5"/><path d="M60 57 Q64 53 69 57 M84 57 Q90 53 94 57" stroke="#49352e" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="66" cy="61" r="2.4" fill="#2e2927"/><circle cx="88" cy="61" r="2.4" fill="#2e2927"/><path d="M72 73 Q78 78 84 72" stroke="#914d48" stroke-width="2" stroke-linecap="round" fill="none"/><ellipse cx="56" cy="69" rx="5" ry="3" fill="#e78f7b" opacity=".55"/><ellipse cx="98" cy="69" rx="5" ry="3" fill="#e78f7b" opacity=".55"/>
+ <path d="M45 90 Q75 78 106 90" stroke="#fff" stroke-opacity=".55" stroke-width="4" fill="none"/><circle cx="76" cy="119" r="5" fill="#f6e6b9"/><path d="M76 123 L76 140" stroke="#f6e6b9" stroke-width="2"/>
+ </svg>`;
+}
+function selectHero(gender){selectedHero=gender;$('chooseBoy').classList.toggle('selected',gender==='boy');$('chooseGirl').classList.toggle('selected',gender==='girl');$('battleHero').innerHTML=heroSVG(gender);$('laserHero').innerHTML=heroSVG(gender);$('homeMascotA').innerHTML=heroSVG(gender);$('homeMascotB').innerHTML=heroSVG(gender==='boy'?'girl':'boy');$('playerName').textContent=gender==='boy'?'Ahmad':'Aisyah';}
 const levels=[
  {name:"Taman Kasih Sayang",enemy:"Monster Cemberut",face:"👹",story:"Monster Cemberut membuat semua anggota keluarga lupa menunjukkan kasih sayang. Kalahkan dia dengan pengetahuan tentang kasih sayang ayah, ibu, kakak, dan adik.",topic:"Kasih Sayang",qs:[
   ["Ayah dan ibu merawat kita saat sakit. Sikap itu menunjukkan ...",["Kasih sayang","Tidak peduli","Marah","Suka bertengkar"],0,"Merawat anak saat sakit adalah salah satu bentuk kasih sayang."],
@@ -112,21 +232,34 @@ function start(m){mode=m;teams=[];scores=[];begin();}
 function startTeam(){teams=[...$("teamInputs").querySelectorAll("input")].map(x=>x.value.trim()||"Kelompok");if(teams.length<2)return;scores=teams.map(()=>0);mode="team";begin();}
 function begin(){coins=0;stars=0;unlocked=0;completed=[];turn=0;updateStats();renderMap();screen("map");}
 function updateStats(){$("coins").textContent=coins;$("stars").textContent=stars;$("progressStat").textContent=completed.length+"/5";$("mapProgress").style.width=(completed.length/5*100)+"%";}
-function renderMap(){let names=["🌷","🏡","🏘️","🌉","🏰"];$("islands").innerHTML=levels.map((l,i)=>`<button class="island ${completed.includes(i)?"done":i>unlocked?"lock":""}" ${i>unlocked?"disabled":""} onclick="enterLevel(${i})"><span class="ico">${completed.includes(i)?"⭐":names[i]}</span><b>${l.name}</b><small>${completed.includes(i)?"Monster dikalahkan":i>unlocked?"Terkunci":"Lawan: "+l.enemy}</small></button>`).join("");$("turnInfo").textContent=mode==="team"?`Giliran ${teams[turn]} • Bergiliran menjawab setiap tantangan.`:"Kalahkan monster untuk membuka pulau berikutnya.";$("mapMsg").textContent=completed.length===5?"Semua pulau sudah pulih!":"Selesaikan tantangan untuk membuka pulau selanjutnya.";updateStats();}
+function renderMap(){
+ const names=["🌷","🏡","🏘️","🌉","🏰"];
+ const pos=[{x:14,y:72},{x:34,y:48},{x:54,y:27},{x:73,y:57},{x:88,y:27}];
+ $("islands").innerHTML=levels.map((l,i)=>{
+  const done=completed.includes(i),locked=i>unlocked,current=!done&&i===unlocked;
+  return `<button class="map-node ${done?'done':''} ${locked?'locked':''} ${current?'current':''}" style="left:${pos[i].x}%;top:${pos[i].y}%" ${locked?'disabled':''} onclick="enterLevel(${i})" aria-label="${l.name}">
+   <span class="node-icon">${done?'⭐':locked?'🔒':names[i]}</span><strong>${l.name}</strong><small>${done?'Misi selesai':locked?'Belum terbuka':current?'KLIK UNTUK MISI':'Lokasi misi'}</small>
+  </button>`;
+ }).join("");
+ const marker=$('playerMarker');const markerIndex=Math.min(unlocked,4);marker.style.left=pos[markerIndex].x+'%';marker.style.top=(pos[markerIndex].y-10)+'%';
+ marker.querySelector('.marker-avatar').innerHTML=heroSVG(selectedHero);$('markerName').textContent=selectedHero==='boy'?'Ahmad':'Aisyah';
+ $('turnInfo').textContent=mode==='team'?`Giliran ${teams[turn]} • Bergiliran menjawab setiap tantangan.`:'Ikuti panah kuning untuk menemukan misi berikutnya!';
+ $('mapMsg').textContent=completed.length===5?'Masya Allah! Semua lokasi berhasil dipulihkan!':'Jelajahi jalur dan ketuk lokasi yang berkilau untuk memulai misi.';updateStats();
+}
 function enterLevel(i){if(i>unlocked)return;level=i;qIndex=0;enemyHP=3;playerHP=3;wrongCount=0;startBattle();}
-function startBattle(){let l=levels[level];$("levelTag").textContent="LEVEL "+(level+1);$("levelName").textContent=l.name;$("story").textContent=l.story;$("enemyAvatar").textContent=l.face;$("enemyName").textContent=l.enemy;$("playerName").textContent=mode==="team"?teams[turn]:"Pahlawan Cilik";$("nextBtn").style.display="none";$("retryBtn").style.display="none";updateBattleBars();renderQuestion();screen("battle");}
+function startBattle(){let l=levels[level];$("levelTag").textContent="LEVEL "+(level+1);$("levelName").textContent=l.name;$("story").textContent=l.story;$("enemyAvatar").textContent=l.face;$("enemyName").textContent=l.enemy;$("playerName").textContent=mode==="team"?teams[turn]:(selectedHero==="boy"?"Ahmad":"Aisyah");$("battleHero").innerHTML=heroSVG(selectedHero);$("nextBtn").style.display="none";$("retryBtn").style.display="none";updateBattleBars();renderQuestion();screen("battle");}
 function updateBattleBars(){$("enemyHpText").textContent=enemyHP+"/3";$("enemyHpBar").style.width=(enemyHP/3*100)+"%";$("playerHpText").textContent=playerHP+"/3";$("playerHpBar").style.width=(playerHP/3*100)+"%";}
 function shuffle(a){let x=[...a];for(let i=x.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]];}return x;}
 function renderQuestion(){lockedAnswer=false;let l=levels[level],q=l.qs[qIndex];$("topicTag").textContent=l.topic;$("questionCount").textContent=`Tantangan ${qIndex+1} dari 3`;$("questionText").textContent=q[0];$("feedback").textContent="Pilih jawaban yang paling tepat untuk menyerang monster!";$("feedback").className="feedback";$("nextBtn").style.display="none";$("retryBtn").style.display="none";let opts=q[1].map((t,i)=>({t,correct:i===q[2]}));opts=shuffle(opts);$("answers").innerHTML=opts.map((o,i)=>`<button class="answer" onclick="answer(${i})">${["🅰️","🅱️","🅲","🅳"][i]} ${o.t}</button>`).join("");$("answers").dataset.correct=opts.findIndex(x=>x.correct);}
 function ping(freq=600){try{let c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator(),g=c.createGain();o.frequency.value=freq;o.connect(g);g.connect(c.destination);g.gain.value=.05;o.start();o.stop(c.currentTime+.13)}catch(e){}}
 function answer(i){if(lockedAnswer)return;lockedAnswer=true;let correct=Number($("answers").dataset.correct),btns=[...$("answers").querySelectorAll("button")],q=levels[level].qs[qIndex];if(i===correct){btns[i].classList.add("correct");enemyHP--;if(mode==="team")scores[turn]+=5;$("feedback").textContent="HEBAT! ⚔️ Serangan berhasil! "+q[3];$("feedback").className="feedback";ping(850);updateBattleBars();$("nextBtn").style.display="inline-block";$("nextBtn").textContent=enemyHP===0?"Kalahkan Monster! 🏆":"Serangan Berikutnya ➜";}else{btns[i].classList.add("wrong");btns[correct].classList.add("correct");playerHP--;wrongCount++;$("feedback").textContent="Belum tepat, pahlawan! ❤️ Monster menyerang. "+q[3]+" Coba lagi!";$("feedback").className="feedback bad";ping(180);updateBattleBars();$("retryBtn").style.display="inline-block";if(playerHP<=0){$("retryBtn").textContent="Ulangi Pertarungan 🔁";}else{$("retryBtn").textContent="Coba Soal Ini Lagi";}}}
 function retryBattle(){if(playerHP<=0){playerHP=3;enemyHP=3;qIndex=0;wrongCount=0;updateBattleBars();renderQuestion();$("feedback").textContent="Semangat! Kamu mendapat kesempatan baru. Baca petunjuknya baik-baik.";}else{renderQuestion();}}
-function nextQuestion(){if(enemyHP<=0){winLevel();return;}qIndex++;if(mode==="team")turn=(turn+1)%teams.length;$("playerName").textContent=mode==="team"?teams[turn]:"Pahlawan Cilik";renderQuestion();}
+function nextQuestion(){if(enemyHP<=0){winLevel();return;}qIndex++;if(mode==="team")turn=(turn+1)%teams.length;$("playerName").textContent=mode==="team"?teams[turn]:(selectedHero==="boy"?"Ahmad":"Aisyah");$("battleHero").innerHTML=heroSVG(selectedHero);renderQuestion();}
 function winLevel(){
  if(!completed.includes(level)){completed.push(level);coins+=10;stars++;if(mode==="team")scores[turn]+=10;}
  unlocked=Math.min(4,Math.max(unlocked,level+1));updateStats();
  // Tampilkan animasi sinematik laser cahaya; tidak ada adegan pukulan atau kontak fisik.
- $("laserMonster").textContent=levels[level].face;
+ $("laserMonster").textContent=levels[level].face;$("laserHero").innerHTML=heroSVG(selectedHero);
  $("laserCaption").textContent="Pahlawan mengumpulkan energi cahaya...";
  const overlay=$("laserOverlay");overlay.classList.remove("show");void overlay.offsetWidth;overlay.classList.add("show");
  ping(520);
@@ -142,4 +275,5 @@ function winLevel(){
 }
 function afterVictory(){if(completed.length===5){$("finalScore").textContent=`Hadiah: ${coins} koin dan ${stars} bintang!`;$("teamResult").innerHTML=mode==="team"?teams.map((t,i)=>`<p><b>${t}</b>: ${scores[i]} poin</p>`).join(""):"";screen("ending");}else{renderMap();screen("map");}}
 function toMap(){renderMap();screen("map");}
+window.addEventListener("DOMContentLoaded",()=>{selectHero("boy");$("boyPreview").innerHTML=heroSVG("boy");$("girlPreview").innerHTML=heroSVG("girl");});
 </script></body></html>
